@@ -3,11 +3,11 @@ package org.jugistanbul.service;
 import org.jugistanbul.PaymentGateway;
 import org.jugistanbul.dto.PaymentRequest;
 
-public class PersistenceService
+public class UserService
 {
-    public static boolean persist(){
+    public static boolean accountChecker(){
         PaymentRequest request = PaymentGateway.PAYMENT_REQUEST.get();
-        //here handle requests for persist
+        //account checker code
         return true;
     }
 }

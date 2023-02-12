@@ -18,7 +18,7 @@ public class PaymentService
 
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             Future<Boolean> validation  = scope.fork(() -> ValidationService.checkValidity());
-            Future<Boolean> persist = scope.fork(() -> PersistenceService.persist());
+            Future<Boolean> account = scope.fork(() -> UserService.accountChecker());
 
             try {
                 scope.join();
@@ -27,9 +27,10 @@ public class PaymentService
                 throw new RuntimeException(e);
             }
 
-            if(validation.resultNow() && persist.resultNow()){
+            if(validation.resultNow() && account.resultNow()){
+                getPaid();
                 ScopedValue.where(PaymentGateway.PAYMENT_REQUEST, request.copyOf())
-                        .run(() -> getPaid());
+                        .run(() -> PrintService.printPaymentInfo());
             }
         }
     }
@@ -37,6 +38,5 @@ public class PaymentService
     private static void getPaid(){
         PaymentRequest request = PaymentGateway.PAYMENT_REQUEST.get();
         //here handle requests for paid
-        System.out.println(String.format("Dear %s we charged your payment successfully from your card", request.customerName()));
     }
 }
