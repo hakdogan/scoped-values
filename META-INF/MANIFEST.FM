@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 20
+Package: org.jugistanbul
+Main-Class: org.jugistanbul.PaymentGateway
+Created-By: hakdogan
+

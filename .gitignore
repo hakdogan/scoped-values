@@ -1,6 +1,8 @@
-.idea/
 *.iml
 *.war
 *.jar
+*.class
+.DS_Store
+.idea/
 src/test/
 target/
