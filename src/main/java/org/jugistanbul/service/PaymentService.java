@@ -23,8 +23,11 @@ public class PaymentService
             try {
                 scope.join();
                 scope.throwIfFailed();
-            } catch (ExecutionException | InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException("This thread was interrupted!");
+            } catch (ExecutionException e){
+                throw new RuntimeException("An ExecutionException occurred!");
             }
 
             if(validation.resultNow() && account.resultNow()){
