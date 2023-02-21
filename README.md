@@ -28,3 +28,6 @@ or
 ```bash
 sh ./run.sh   
 ```
+
+## Relevant article is
+[An introduction to Scoped Values in Java](https://medium.com/@hakdogan/an-introduction-to-scoped-values-in-java-7b63ff4364a6)
